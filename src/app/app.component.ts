@@ -71,7 +71,7 @@ export class MyApp {
     const colors = url.searchParams.get('colors').split(',');
     const keys = Object.keys(this.layout.colors);
 
-    let layout = {};
+    let layout = {primary: '', secondary: '', light: '', dark: '', darklight: ''};
     keys.map((key, i) => layout[key] = colors[i]);
 
     this.layout.colors = layout;

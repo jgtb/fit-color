@@ -77,4 +77,13 @@ export class MyApp {
     this.layout.colors = layout;
   }
 
+  setLogo() {
+    const ref = window.location.href;
+    const url = new URL(ref);
+
+    const logo = url.searchParams.get('id');
+
+    this.util.setStorage('logo', logo);
+  }
+
 }

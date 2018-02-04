@@ -28,6 +28,7 @@ export class MyApp {
     public util: Util,
     public layout: Layout) {
     platform.ready().then(() => {
+      this.setLogo();
       this.setColor();
       this.setRoot();
       this.appConfig();

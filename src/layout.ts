@@ -12,7 +12,6 @@ export class Layout {
   colors = {
     primary:    '#004d40',
     secondary:  '#2b2b2b',
-    danger:     '#004d40',
     light:      '#ffffff',
     dark:       '#191919',
     darklight:  '#1e1e1e'

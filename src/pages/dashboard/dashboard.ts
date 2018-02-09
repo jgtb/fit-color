@@ -52,9 +52,7 @@ export class DashboardPage {
     this.initMenu();
   }
 
-  ionViewDidLoad() {
-    this.isActive();
-  }
+  ionViewDidLoad() {}
 
   initMenu() {
     this.menu = [];
@@ -65,10 +63,10 @@ export class DashboardPage {
 
     if (this.util.getStorage('showReserva') === 'true')
       this.menu.push({ title: 'Reservas', component: ReservaPage, icon: 'ios-create', class: '' });
-    
+
     if (this.util.getStorage('showRanking') === 'true')
       this.menu.push({ title: 'Ranking', component: RankingPage, icon: 'md-podium', class: '' });
-    
+
     const classe = this.menu.length%2==0?'m-l-25p':'';
     this.menu.push({ title: 'Informações', component: InformacaoPage, icon: 'ios-information-circle', class: classe })
 
@@ -85,16 +83,6 @@ export class DashboardPage {
         this.util.setStorage('facebookId', this.userImg);
       })
     });
-  }
-
-  isActive() {
-    this.authProvider.isActive().subscribe(
-      data => {
-        if (data['_body']=="") {
-          this.util.setLogout();
-          this.navCtrl.setRoot(LoginPage);
-        }
-      });
   }
 
   doRefresh() {
@@ -118,15 +106,14 @@ export class DashboardPage {
       data => {
         this.util.setStorage('ranking', data);
         if(data[1].length!=0){
-          const item = data[1].find(el => el.id_aluno == this.util.getStorage('id_aluno')); 
-          this.pontos = item ? item.pontos : 0; 
+          const item = data[1].find(el => el.id_aluno == this.util.getStorage('id_aluno'));
+          this.pontos = item ? item.pontos : 0;
         }
       });
   }
 
   logout() {
     this.util.setLogout();
-    this.navCtrl.push(LoginPage);
   }
 
 }

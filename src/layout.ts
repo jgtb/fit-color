@@ -9,12 +9,15 @@ export class Layout {
     darklight:  '#2b2b2b'
   };
 
+  //#F9C736
   colors = {
-    primary:    '#004d40',
-    secondary:  '#2b2b2b',
-    light:      '#ffffff',
-    dark:       '#191919',
-    darklight:  '#1e1e1e'
+    dark:       '#222222',      //cor de fundo
+    primary:    '#F9C736',      //cor dos botões do menu
+    secondary:  '#F9C736',      //cor da barra superior
+    terciary:   '#333333',      //cor do botão da barra superior
+    danger:     'white',        //cor dos ícones dos botões do menu e título
+    light:      'white',        //cor do texto
+    darklight:  '#666666'       //cor de fundo da lista
   };
 
   constructor() {}
@@ -73,6 +76,7 @@ export class Layout {
     const darklight = this.colors.darklight;
     const light = this.colors.light;
     const primary = this.colors.primary;
+    const terciary = this.colors.terciary;
 
     const calendarTableHeaders = document.querySelectorAll('.' + selector + '-datetable thead tr th');
 
@@ -116,7 +120,7 @@ export class Layout {
     var calendarMonthSelectedDay = document.querySelectorAll('.monthview-selected');
     if(calendarMonthSelectedDay) {
       [].forEach.call(calendarMonthSelectedDay, function(elem, i) {
-        elem.style.backgroundColor = primary;
+        elem.style.backgroundColor = terciary;
       });
     }
 

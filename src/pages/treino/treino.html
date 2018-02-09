@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar [ngStyle]="layout.setToolbarColor('ion-navbar', 'secondary', 'light')">
+  <ion-navbar [ngStyle]="layout.setToolbarColor('ion-navbar', 'secondary', 'danger')">
     <ion-title>{{ data.descricao }}</ion-title>
   </ion-navbar>
 </ion-header>
@@ -12,14 +12,14 @@
   <ion-grid class="running" [ngStyle]="layout.setBackgroundColor('dark')" ion-fixed>
     <ion-row>
       <ion-col col-3>
-        <button ion-button style="background:red;" block round small (click)="create(); stop()"><ion-icon [ngStyle]="layout.setColor('light')" name="square"></ion-icon></button>
+        <button ion-button style="background:red; color: white;" block round small (click)="create(); stop()"><ion-icon name="square"></ion-icon></button>
       </ion-col>
       <ion-col col-6>
         <h3 class="timer-clock" [ngStyle]="layout.setColor('light')">{{ timer.display }}</h3>
       </ion-col>
       <ion-col col-3>
-        <button ion-button style="background:green;" block round small *ngIf="!timer.running" (click)="start()"><ion-icon [ngStyle]="layout.setColor('light')" name="play"></ion-icon></button>
-        <button ion-button style="background:green;" block round small *ngIf="timer.running" (click)="stop()"><ion-icon [ngStyle]="layout.setColor('light')" name="pause"></ion-icon></button>
+        <button ion-button style="background:green; color: white;" block round small *ngIf="!timer.running" (click)="start()"><ion-icon name="play"></ion-icon></button>
+        <button ion-button style="background:green; color: white;" block round small *ngIf="timer.running" (click)="stop()"><ion-icon name="pause"></ion-icon></button>
       </ion-col>
     </ion-row>
   </ion-grid>

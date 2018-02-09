@@ -17,7 +17,7 @@ import { Layout } from '../layout';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage: any = LoginPage;
+  rootPage: any = DashboardPage;
 
   constructor(
     platform: Platform,
@@ -53,29 +53,21 @@ export class MyApp {
     this.oneSignal.endInit();
   }
 
-  setRoot() {
-    this.authProvider.isActive().subscribe(
-      data => {
-        if (!data['_body']) {
-          this.rootPage = LoginPage;
-          this.util.setLogout();
-        } else {
-          this.rootPage = DashboardPage;
-        }
-      });
-  }
+  setRoot() {}
 
   setColor() {
     const ref = window.location.href;
     const url = new URL(ref);
 
-    const colors = url.searchParams.get('colors').split(',');
-    const keys = Object.keys(this.layout.colors);
+    if (url.searchParams.get('colors')) {
+      const colors = url.searchParams.get('colors').split(',');
+      const keys = Object.keys(this.layout.colors);
 
-    let layout = {primary: '', secondary: '', light: '', dark: '', darklight: ''};
-    keys.map((key, i) => layout[key] = colors[i]);
+      let layout = {dark: '', primary: '', secondary: '', terciary: '', danger: '', light: '', darklight: ''};
+      keys.map((key, i) => layout[key] = colors[i]);
 
-    this.layout.colors = layout;
+      this.layout.colors = layout;
+    }
   }
 
   setLogo() {

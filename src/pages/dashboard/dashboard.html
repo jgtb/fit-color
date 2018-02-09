@@ -12,8 +12,8 @@
 				<ion-col col-6 *ngFor="let item of menu;" class="{{ item.class }}">
 					<ion-card (click)="openPage(item.component)" [ngStyle]="layout.setBackgroundColor('primary')">
 						<ion-card-content>
-							<small [ngStyle]="layout.setColor('light')">{{ item.title }}</small>
-							<ion-icon [ngStyle]="layout.setColor('light')" name="{{ item.icon }}"></ion-icon>
+							<small [ngStyle]="layout.setColor('danger')">{{ item.title }}</small>
+							<ion-icon [ngStyle]="layout.setColor('danger')" name="{{ item.icon }}"></ion-icon>
 						</ion-card-content>
 					</ion-card>
 				</ion-col>
@@ -21,8 +21,8 @@
 		</ion-grid>
 	</div>
 	<ion-fab top right>
-		<button ion-fab icon-only mini [ngStyle]="layout.setBackgroundColor('secondary')" (click)="logout()">
-			<ion-icon [ngStyle]="layout.setColor('light')" name="md-log-out"></ion-icon>
+		<button ion-fab icon-only mini [ngStyle]="layout.setBackgroundColor('primary')" (click)="logout()">
+			<ion-icon [ngStyle]="layout.setColor('danger')" name="md-log-out"></ion-icon>
 		</button>
   </ion-fab>
 </ion-content>

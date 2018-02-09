@@ -5,7 +5,14 @@ import { Facebook } from '@ionic-native/facebook';
 import { IonicImageLoader } from 'ionic-image-loader';
 
 import { AuthProvider } from '../../providers/auth/auth';
+import { SerieProvider } from '../../providers/serie/serie';
+import { AvaliacaoProvider } from '../../providers/avaliacao/avaliacao';
+import { AvaliacaoFormProvider } from '../../providers/avaliacao-form/avaliacao-form';
+import { GraficoProvider } from '../../providers/grafico/grafico';
+import { CalendarioProvider } from '../../providers/calendario/calendario';
+import { ReservaProvider } from '../../providers/reserva/reserva';
 import { RankingProvider } from '../../providers/ranking/ranking';
+import { InformacaoProvider } from '../../providers/informacao/informacao';
 
 import { LoginPage } from '../../pages/login/login';
 
@@ -39,7 +46,14 @@ export class DashboardPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public authProvider: AuthProvider,
+    public serieProvider: SerieProvider,
+    public avaliacaoProvider: AvaliacaoProvider,
+    public avaliacaoFormProvider: AvaliacaoFormProvider,
+    public informacaoProvider: InformacaoProvider,
+    public calendarioProvider: CalendarioProvider,
+    public reservaProvider: ReservaProvider,
     public rankingProvider: RankingProvider,
+    public graficoProvider: GraficoProvider,
     public facebook: Facebook,
     public util: Util,
     public layout: Layout) {
@@ -52,7 +66,67 @@ export class DashboardPage {
     this.initMenu();
   }
 
-  ionViewDidLoad() {}
+  ionViewDidLoad() {
+    if (this.util.getStorage('isLogged') === 'false') {
+      this.doLogin([18, 18, 2, ,10, 30, 'https://graph.facebook.com/10156165879280972/picture', , 2]);
+    }
+  }
+
+  doLogin(data) {
+    const id_aluno = data[0];
+    const id_professor = data[1];
+    const id_tipo_professor = data[2];
+    const id_usuario = data[5];
+    const facebookId = data[6];
+    const grupo = data[8];
+
+    this.util.setStorage('isLogged', 'true');
+    this.util.setStorage('showReserva', id_tipo_professor === 4 ? 'true' : 'false');
+    this.util.setStorage('showRanking', grupo !== 0? 'true': 'false');
+    this.util.setStorage('logo', id_professor);
+    this.util.setStorage('id_aluno', id_aluno);
+    this.util.setStorage('id_professor', id_professor);
+    this.util.setStorage('facebookId', facebookId==''?'assets/img/facebook.png':facebookId);
+
+    //this.playerId(id_usuario);
+
+    this.serieProvider.index(id_aluno).subscribe(
+      data => {
+        this.util.setStorage('dataSerie', data);
+    });
+    this.avaliacaoProvider.index(id_aluno).subscribe(
+      data => {
+        this.util.setStorage('dataAvaliacao', data);
+    });
+    this.avaliacaoFormProvider.index(id_professor).subscribe(
+      data => {
+        this.util.setStorage('dataAvaliacaoForm', data);
+    });
+    this.graficoProvider.index(id_aluno).subscribe(
+      data => {
+        this.util.setStorage('dataGrafico', data);
+    });
+    this.calendarioProvider.index(id_aluno).subscribe(
+      data => {
+        this.util.setStorage('dataTreino', data);
+    });
+    this.reservaProvider.index(id_aluno).subscribe(
+      data => {
+        this.util.setStorage('dataReserva', data);
+    });
+    this.rankingProvider.index().subscribe(
+      data => {
+        this.util.setStorage('ranking', data);
+      });
+    this.informacaoProvider.indexInformacao(id_professor).subscribe(
+      data => {
+        this.util.setStorage('dataInformacao', data);
+    });
+    this.informacaoProvider.indexMensagem(id_aluno).subscribe(
+      data => {
+        this.util.setStorage('dataMensagem', data);
+    });
+  }
 
   initMenu() {
     this.menu = [];

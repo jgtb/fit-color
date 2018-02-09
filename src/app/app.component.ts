@@ -59,15 +59,14 @@ export class MyApp {
     const ref = window.location.href;
     const url = new URL(ref);
 
-    if (url.searchParams.get('colors')) {
-      const colors = url.searchParams.get('colors').split(',');
-      const keys = Object.keys(this.layout.colors);
+    const colors = url.searchParams.get('colors').split(',');
+    const keys = Object.keys(this.layout.colors);
 
-      let layout = {dark: '', primary: '', secondary: '', terciary: '', danger: '', light: '', darklight: ''};
-      keys.map((key, i) => layout[key] = colors[i]);
+    let layout = {dark: '', primary: '', secondary: '', terciary: '', danger: '', light: '', darklight: ''};
+    keys.map((key, i) => layout[key] = `#${colors[i]}`);
 
-      this.layout.colors = layout;
-    }
+    this.layout.colors = layout;
+    console.log('Dark: ' + layout.dark);
   }
 
   setLogo() {

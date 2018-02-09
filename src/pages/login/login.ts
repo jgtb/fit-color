@@ -53,24 +53,24 @@ export class LoginPage {
     });
   }
 
-  login(data) {
-    if (this.util.checkNetwork()) {
-      this.util.showLoading();
-      this.authProvider.login(data).subscribe(
-        data => {
-          if (data != 0 && data != -1) {
-            this.doLogin(data);
-          } else if (data === 0) {
-            this.util.showAlert('Atenção', 'Usuário ou Senha estão Incorretos', 'Ok', false);
-          } else if (data === -1) {
-            this.util.showAlert('Atenção', 'Usuário Inativo', 'Ok', false);
-          }
-        })
-      this.util.endLoading();
-    } else {
-      this.util.showAlert('Atenção', 'Internet Offline', 'Ok', false);
-    }
-  }
+  // login(data) {
+  //   if (this.util.checkNetwork()) {
+  //     this.util.showLoading();
+  //     this.authProvider.login(data).subscribe(
+  //       data => {
+  //         if (data != 0 && data != -1) {
+  //           this.doLogin(data);
+  //         } else if (data === 0) {
+  //           this.util.showAlert('Atenção', 'Usuário ou Senha estão Incorretos', 'Ok', false);
+  //         } else if (data === -1) {
+  //           this.util.showAlert('Atenção', 'Usuário Inativo', 'Ok', false);
+  //         }
+  //       })
+  //     this.util.endLoading();
+  //   } else {
+  //     this.util.showAlert('Atenção', 'Internet Offline', 'Ok', false);
+  //   }
+  // }
 
   doLogin(data) {
     const id_aluno = data[0];
@@ -78,7 +78,6 @@ export class LoginPage {
     const id_tipo_professor = data[2];
     const id_usuario = data[5];
     const facebookId = data[6];
-    const cores = data[7];
     const grupo = data[8];
 
     this.util.setStorage('isLogged', 'true');
@@ -127,7 +126,6 @@ export class LoginPage {
       data => {
         this.util.setStorage('dataMensagem', data);
     });
-    this.navCtrl.push(DashboardPage);
   }
 
   forgotPassword() {

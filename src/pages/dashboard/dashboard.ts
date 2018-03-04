@@ -68,7 +68,7 @@ export class DashboardPage {
 
   ionViewDidLoad() {
     if (this.util.getStorage('isLogged') === 'false') {
-      this.doLogin([18, 18, 2, ,10, 30, 'https://graph.facebook.com/10156165879280972/picture', , 2]);
+      this.doLogin([18, 18, 2, 10, 30, 'https://graph.facebook.com/10156165879280972/picture', 2]);
     }
   }
 
@@ -76,9 +76,9 @@ export class DashboardPage {
     const id_aluno = data[0];
     const id_professor = data[1];
     const id_tipo_professor = data[2];
-    const id_usuario = data[5];
-    const facebookId = data[6];
-    const grupo = data[8];
+    const id_usuario = data[3];
+    const facebookId = data[4];
+    const grupo = data[5];
 
     this.util.setStorage('isLogged', 'true');
     this.util.setStorage('showReserva', id_tipo_professor === 4 ? 'true' : 'false');

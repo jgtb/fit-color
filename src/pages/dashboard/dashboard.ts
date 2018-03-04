@@ -62,7 +62,7 @@ export class DashboardPage {
   }
 
   ionViewDidEnter() {
-    this.userImg = this.util.getStorage('facebookId');
+    this.userImg = 'https://graph.facebook.com/10156165879280972/picture';
     this.doRefresh();
     this.initMenu();
   }
@@ -83,7 +83,7 @@ export class DashboardPage {
     this.util.setStorage('logo', id_professor);
     this.util.setStorage('id_aluno', id_aluno);
     this.util.setStorage('id_professor', id_professor);
-    this.util.setStorage('facebookId', facebookId==''?'assets/img/facebook.png':facebookId);
+    this.util.setStorage('facebookId', facebookId === '' ? 'assets/img/facebook.png' : facebookId);
 
     //this.playerId(id_usuario);
 

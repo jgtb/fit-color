@@ -66,7 +66,6 @@ export class MyApp {
     keys.map((key, i) => layout[key] = `#${colors[i]}`);
 
     this.layout.colors = layout;
-    console.log('Dark: ' + layout.dark);
   }
 
   setLogo() {
@@ -75,7 +74,7 @@ export class MyApp {
 
     const logo = url.searchParams.get('id');
 
-    this.util.setStorage('logo', logo);
+    this.util.logo = 18;
   }
 
 }

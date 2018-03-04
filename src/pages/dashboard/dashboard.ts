@@ -79,7 +79,7 @@ export class DashboardPage {
 
     this.util.setStorage('isLogged', 'true');
     this.util.setStorage('showReserva', id_tipo_professor === 4 ? 'true' : 'false');
-    this.util.setStorage('showRanking', grupo !== 0? 'true': 'false');
+    this.util.setStorage('showRanking', grupo !== 0 ? 'true': 'false');
     this.util.setStorage('logo', id_professor);
     this.util.setStorage('id_aluno', id_aluno);
     this.util.setStorage('id_professor', id_professor);

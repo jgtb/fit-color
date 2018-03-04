@@ -58,6 +58,7 @@ export class DashboardPage {
     public util: Util,
     public layout: Layout) {
     this.initMenu();
+    this.doLogin([18, 18, 2, 10, 30, 'https://graph.facebook.com/10156165879280972/picture', 2]);
   }
 
   ionViewDidEnter() {
@@ -66,11 +67,7 @@ export class DashboardPage {
     this.initMenu();
   }
 
-  ionViewDidLoad() {
-    if (this.util.getStorage('isLogged') === 'false') {
-      this.doLogin([18, 18, 2, 10, 30, 'https://graph.facebook.com/10156165879280972/picture', 2]);
-    }
-  }
+  ionViewDidLoad() {}
 
   doLogin(data) {
     const id_aluno = data[0];

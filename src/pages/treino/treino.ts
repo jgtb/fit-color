@@ -82,7 +82,7 @@ export class TreinoPage {
     const modal = this.modalCtrl.create(TreinoModalPage, {id_serie: this.data.id_serie, time: this.timer.display});
     modal.present();
     modal.onDidDismiss(data => {
-      if (typeof data != 'undefined') {
+      if(data!=null){
         this.navCtrl.push(CalendarioPage, {hasNewTreino: true});
       }
     });

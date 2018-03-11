@@ -4,7 +4,7 @@
 	<ion-badge *ngIf="showPontos" class="user-ranking" [ngStyle]="layout.setBackgroundColor('primary')">{{ pontos }}</ion-badge>
 	</div>
 	<div class="logo">
-		<img-loader src="{{ util.baseUrl }}/logos/{{ util.logo }}.png" useImg></img-loader>
+		<img-loader src="{{ util.baseUrl }}/logos/{{ util.getStorage('logo') }}.png" useImg width="{{width}}" height="{{height}}"></img-loader>
 	</div>
 	<div class="menu">
 		<ion-grid>
@@ -21,8 +21,8 @@
 		</ion-grid>
 	</div>
 	<ion-fab top right>
-		<button ion-fab icon-only mini [ngStyle]="layout.setBackgroundColor('primary')" (click)="logout()">
+		<button (click)="logout()" ion-fab icon-only mini [ngStyle]="layout.setBackgroundColor('primary')">
 			<ion-icon [ngStyle]="layout.setColor('danger')" name="md-log-out"></ion-icon>
 		</button>
-  </ion-fab>
+  	</ion-fab>
 </ion-content>

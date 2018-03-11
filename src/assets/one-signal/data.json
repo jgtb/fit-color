@@ -1,7 +1,12 @@
-[
-  {
-    "key": "Moov",
-    "oneSignalId": "aa67fa9c-474b-42ef-b968-75e451d8cb9b",
-    "fireBaseId": "937666658160"
-  }
-]
+[ 
+  { 
+  "key": "moov", 
+  "oneSignalId": "aa67fa9c-474b-42ef-b968-75e451d8cb9b", 
+  "fireBaseId": "937666658160" 
+  }, 
+  { 
+  "key": "personal-group", 
+  "oneSignalId": "5f01fb91-38c1-4ede-b6a8-d64cc0862fd7", 
+  "fireBaseId": "350194314773" 
+  } 
+  ] 

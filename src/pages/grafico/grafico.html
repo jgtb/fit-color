@@ -1,9 +1,9 @@
 <ion-header>
   <ion-navbar hideBackButton [ngStyle]="layout.setToolbarColor('ion-navbar', 'secondary', 'danger')">
     <ion-buttons left>
-      <button ion-button icon-only clear (click)="goToDashboard()">
-        <ion-icon name="menu" [ngStyle]="layout.setColor('danger')"></ion-icon>
-      </button>
+      <div (click)="goToDashboard()">
+        <ion-icon class="page-icon-menu" name="menu" [ngStyle]="layout.setColor('danger')"></ion-icon>
+      </div>
     </ion-buttons>
     <ion-title>Gráficos</ion-title>
   </ion-navbar>

@@ -1,16 +1,11 @@
 <ion-header>
   <ion-navbar hideBackButton [ngStyle]="layout.setToolbarColor('ion-navbar', 'secondary', 'danger')">
     <ion-buttons left>
-      <button ion-button icon-only clear (click)="goToDashboard()">
-        <ion-icon name="menu" [ngStyle]="layout.setColor('danger')"></ion-icon>
-      </button>
+      <div (click)="goToDashboard()">
+        <ion-icon class="page-icon-menu" name="menu" [ngStyle]="layout.setColor('danger')"></ion-icon>
+      </div>
     </ion-buttons>
     <ion-title>Avaliações</ion-title>
-    <ion-buttons right>
-      <button ion-button icon-only class="btn-circle" [ngStyle]="layout.setBackgroundColor('terciary')" (click)="create()">
-        <ion-icon [ngStyle]="layout.setColor('danger')" name="add"></ion-icon>
-      </button>
-    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -25,5 +20,11 @@
       <span item-end>{{ item?.data }}</span>
     </ion-item>
   </ion-list>
+
+  <!--<ion-fab top right>
+    <button ion-fab icon-only mini [ngStyle]="layout.setBackgroundColor('terciary')" (click)="create()">
+      <ion-icon [ngStyle]="layout.setColor('danger')" name="add"></ion-icon>
+    </button>
+  </ion-fab>-->
 
 </ion-content>

@@ -4,20 +4,21 @@ import { Injectable } from '@angular/core';
 export class Layout {
 
   loginColors = {
-    secondary:  '#ffd400',
-    light:      '#f4f4f4',
-    darklight:  '#2b2b2b'
+    secondary:  '#0000ff',
+    light:      'black',
+    darklight:  '#ffffff',
+    danger:     'white'
   };
 
   //#F9C736
   colors = {
-    dark:       '#222222',      //cor de fundo
-    primary:    '#F9C736',      //cor dos botões do menu
-    secondary:  '#F9C736',      //cor da barra superior
-    terciary:   '#333333',      //cor do botão da barra superior
+    dark:       '#eeeeee',      //cor de fundo 
+    primary:    '#0000ff',      //cor dos botões
+    secondary:  '#0000ff',      //cor da barra superior
+    terciary:   '#0000B2',      //cor do botão da barra superior
     danger:     'white',        //cor dos ícones dos botões do menu e título
-    light:      'white',        //cor do texto
-    darklight:  '#666666'       //cor de fundo da lista
+    light:      'black',        //cor do texto
+    darklight:  '#ffffff'       //cor de fundo da lista
   };
 
   constructor() {}
@@ -161,6 +162,7 @@ export class Layout {
 
   setAlertColor(colorsType) {
     const secondary = colorsType ? this.colors.secondary : this.loginColors.secondary;
+    const danger = colorsType ? this.colors.danger : this.loginColors.danger;
     const darklight = colorsType ? this.colors.darklight : this.loginColors.darklight;
     const light = colorsType ? this.colors.light : this.loginColors.light;
 
@@ -187,7 +189,7 @@ export class Layout {
 
     [].forEach.call(alertButtons, function(elem, i) {
       elem.style.backgroundColor = secondary;
-      elem.style.color = light;
+      elem.style.color = danger;
     });
 
     const alertActivatedButton = document.querySelectorAll('.alert-button .activated');

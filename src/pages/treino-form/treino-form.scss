@@ -27,7 +27,7 @@
   	}
 	  .treino-modal-body {
       position: absolute;
-	    top: 110px;
+	    top: calc(50% - (50%/2));
 	    left: 25px;
 	    right: 25px;
 	    width: auto;

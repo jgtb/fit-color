@@ -18,7 +18,7 @@ export class InformacaoPage {
 
   title: string = '';
 
-  tab: string = 'informacao';
+  tab: string = 'mensagem';
 
   dataInformacao: any = [];
   dataMensagem: any = [];
@@ -32,6 +32,10 @@ export class InformacaoPage {
       this.selectInformacao(this.util.getStorage('dataInformacao'));
       this.selectMensagem(this.util.getStorage('dataMensagem'));
     }
+
+  ionViewWillEnter(){
+    this.refreshData();
+  }
 
   selectInformacao(result) {
     this.dataInformacao = result;
@@ -50,20 +54,25 @@ export class InformacaoPage {
 
   doRefresh(event) {
     if (this.util.checkNetwork()) {
-      this.informacaoProvider.indexInformacao(this.util.getStorage('id_professor')).subscribe(
-        data => {
-          this.util.setStorage('dataInformacao', data);
-          this.selectInformacao(data);
-        })
-      this.informacaoProvider.indexMensagem(this.util.getStorage('id_aluno')).subscribe(
-        data => {
-          this.util.setStorage('dataInformacao', data);
-          this.selectMensagem(data);
-        })
+      this.refreshData();
     } else {
       this.util.showAlert('Atenção', 'Internet Offline', 'Ok', true)
     }
     setTimeout(() => { event.complete() }, 2000)
+  }
+
+  refreshData(){
+    this.informacaoProvider.indexInformacao(this.util.getStorage('id_professor')).subscribe(
+      data => {
+        this.util.setStorage('dataInformacao', data);
+        this.selectInformacao(data);
+      })
+    this.informacaoProvider.indexMensagem(this.util.getStorage('id_aluno')).subscribe(
+      data => {
+        console.log(data);
+        this.util.setStorage('dataInformacao', data);
+        this.selectMensagem(data);
+      })
   }
 
   goToDashboard() {

@@ -15,7 +15,7 @@
 				position: relative;
 				.current {
 					position: absolute;
-					color: map-get($colors, light);
+					color: map-get($colors, dark);
 					font-weight: 100;
 					line-height: 1;
 				}

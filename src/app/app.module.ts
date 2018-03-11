@@ -10,6 +10,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { OneSignal } from '@ionic-native/onesignal';
 import { Facebook } from '@ionic-native/facebook';
 import { NativeAudio } from '@ionic-native/native-audio';
+import { Badge } from '@ionic-native/badge';
 
 import { IonicImageLoader } from 'ionic-image-loader';
 import { NgCalendarModule  } from 'ionic2-calendar';
@@ -52,6 +53,7 @@ import { Layout } from '../layout';
     Layout,
     Vibration,
     NativeAudio,
+    Badge,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

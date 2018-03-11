@@ -1,10 +1,10 @@
 <ion-header no-border>
-  <ion-navbar [ngStyle]="layout.setToolbarColor('ion-navbar', 'secondary', 'light')">
+  <ion-navbar [ngStyle]="layout.setToolbarColor('ion-navbar', 'secondary', 'dark')">
     <ion-title>Timer</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content [ngStyle]="layout.setBackgroundColor('secondary')">
+<ion-content [ngStyle]="layout.setBackgroundColor('dark')">
 	<div class="bg-wrapper">
 		<div class="progress-wrapper">
 			<div class="current" [ngStyle]="getOverlayStyle()">{{ timer.display }}s</div>

@@ -66,7 +66,7 @@ export class CalendarioPage {
     const modal = this.modalCtrl.create(TreinoFormPage);
     modal.present();
     modal.onDidDismiss(data => {
-      if (typeof data != 'undefined') {
+      if (data != null) {
         this.util.showAlert('Atenção', 'Treino Registrado.', 'Ok', true);
         this.refreshData();
       }

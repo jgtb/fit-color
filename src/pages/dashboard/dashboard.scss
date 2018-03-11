@@ -26,10 +26,20 @@
 		.logo {
 			text-align: center;
 			margin-top: 20px;
+			margin-bottom: 20px;
 			img {
-				width: 220px;
-				height: 220px;
-				border-radius: 30px;
+				width: 80%;
+				height: 80%;
+			}
+		}
+		.logout {
+			.logout-button {
+				border-radius: 50%;
+				height: 40px;
+				width: 40px;
+				top: 15px;
+				right: 15px;
+				position: fixed;
 			}
 		}
 		ion-card {

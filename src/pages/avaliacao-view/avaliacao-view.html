@@ -28,7 +28,7 @@
             </ion-row>
             <ion-row>
               <ion-col col-4>
-                <button *ngIf="isPDF(item)" ion-button [ngStyle]="layout.setBackgroundColor('danger')" block round (click)="link(item)"><ion-icon name="link" [ngStyle]="layout.setColor('light')"></ion-icon></button>
+                <button *ngIf="isPDF(item)" ion-button [ngStyle]="layout.setBackgroundColor('primary')" block round (click)="link(item)"><ion-icon name="ios-share" [ngStyle]="layout.setColor('danger')"></ion-icon></button>
               </ion-col>
             </ion-row>
           </ion-grid>

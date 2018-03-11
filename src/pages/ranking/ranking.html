@@ -1,9 +1,9 @@
 <ion-header>
   <ion-navbar hideBackButton [ngStyle]="layout.setToolbarColor('ion-navbar', 'secondary', 'danger')">
     <ion-buttons left>
-      <button ion-button icon-only clear (click)="goToDashboard()">
-        <ion-icon name="menu" [ngStyle]="layout.setColor('danger')"></ion-icon>
-      </button>
+      <div (click)="goToDashboard()">
+        <ion-icon class="page-icon-menu" name="menu" [ngStyle]="layout.setColor('danger')"></ion-icon>
+      </div>
     </ion-buttons>
     <ion-title>Ranking</ion-title>
   </ion-navbar>
@@ -30,7 +30,7 @@
             <ion-avatar item-start>
               <img-loader *ngIf="item.link_foto" src="{{item.link_foto}}" useImg></img-loader>
             </ion-avatar>
-            <h2 [ngStyle]="layout.setColor('light')">{{ item?.nome }}</h2>
+            <h2 [ngStyle]="layout.setColor('light')">{{i+1}}. {{ item?.nome }}</h2>
             <p [ngStyle]="layout.setColor('light')"item-end>{{ item?.pontos }}</p>
           </ion-item>
         </ion-list>
@@ -41,7 +41,7 @@
               <ion-avatar item-start>
                 <img-loader *ngIf="item.link_foto" src="{{item.link_foto}}" useImg></img-loader>
               </ion-avatar>
-              <h2 [ngStyle]="layout.setColor('light')">{{ item?.nome }}</h2>
+              <h2 [ngStyle]="layout.setColor('light')">{{i+1}}. {{ item?.nome }}</h2>
               <p [ngStyle]="layout.setColor('light')"item-end>{{ item?.pontos }}</p>
             </ion-item>
           </ion-list>

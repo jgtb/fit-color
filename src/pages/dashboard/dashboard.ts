@@ -5,14 +5,7 @@ import { Facebook } from '@ionic-native/facebook';
 import { IonicImageLoader } from 'ionic-image-loader';
 
 import { AuthProvider } from '../../providers/auth/auth';
-import { SerieProvider } from '../../providers/serie/serie';
-import { AvaliacaoProvider } from '../../providers/avaliacao/avaliacao';
-import { AvaliacaoFormProvider } from '../../providers/avaliacao-form/avaliacao-form';
-import { GraficoProvider } from '../../providers/grafico/grafico';
-import { CalendarioProvider } from '../../providers/calendario/calendario';
-import { ReservaProvider } from '../../providers/reserva/reserva';
 import { RankingProvider } from '../../providers/ranking/ranking';
-import { InformacaoProvider } from '../../providers/informacao/informacao';
 
 import { LoginPage } from '../../pages/login/login';
 
@@ -39,95 +32,34 @@ export class DashboardPage {
   pontos: number;
 
   showPontos: boolean;
+  showRanking: boolean;
 
   menu: Array<{title: string, component: any, icon: string, class: string}>;
+
+  width: number;
+
+  height: number;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public authProvider: AuthProvider,
-    public serieProvider: SerieProvider,
-    public avaliacaoProvider: AvaliacaoProvider,
-    public avaliacaoFormProvider: AvaliacaoFormProvider,
-    public informacaoProvider: InformacaoProvider,
-    public calendarioProvider: CalendarioProvider,
-    public reservaProvider: ReservaProvider,
     public rankingProvider: RankingProvider,
-    public graficoProvider: GraficoProvider,
     public facebook: Facebook,
     public util: Util,
-    public layout: Layout) {
-    this.initMenu();
-    this.doLogin([18, 18, 2, 10, 30, 'https://graph.facebook.com/10156165879280972/picture', 2]);
-  }
+    public layout: Layout) {}
 
-  ionViewDidEnter() {
-    this.userImg = 'https://graph.facebook.com/10156165879280972/picture';
+  ionViewWillLeave(){
     this.doRefresh();
-    this.initMenu();
   }
 
-  ionViewDidLoad() {}
-
-  doLogin(data) {
-    const id_aluno = data[0];
-    const id_professor = data[1];
-    const id_tipo_professor = data[2];
-    const id_usuario = data[3];
-    const facebookId = data[4];
-    const grupo = data[5];
-
-    this.util.setStorage('isLogged', 'true');
-    this.util.setStorage('showReserva', id_tipo_professor === 4 ? 'true' : 'false');
-    this.util.setStorage('showRanking', grupo !== 0 ? 'true': 'false');
-    this.util.setStorage('logo', id_professor);
-    this.util.setStorage('id_aluno', id_aluno);
-    this.util.setStorage('id_professor', id_professor);
-    this.util.setStorage('facebookId', facebookId === '' ? 'assets/img/facebook.png' : facebookId);
-
-    //this.playerId(id_usuario);
-
-    this.serieProvider.index(id_aluno).subscribe(
-      data => {
-        this.util.setStorage('dataSerie', data);
-    });
-    this.avaliacaoProvider.index(id_aluno).subscribe(
-      data => {
-        this.util.setStorage('dataAvaliacao', data);
-    });
-    this.avaliacaoFormProvider.index(id_professor).subscribe(
-      data => {
-        this.util.setStorage('dataAvaliacaoForm', data);
-    });
-    this.graficoProvider.index(id_aluno).subscribe(
-      data => {
-        this.util.setStorage('dataGrafico', data);
-    });
-    this.calendarioProvider.index(id_aluno).subscribe(
-      data => {
-        this.util.setStorage('dataTreino', data);
-    });
-    this.reservaProvider.index(id_aluno).subscribe(
-      data => {
-        this.util.setStorage('dataReserva', data);
-    });
-    this.rankingProvider.index().subscribe(
-      data => {
-        this.util.setStorage('ranking', data);
-      });
-    this.informacaoProvider.indexInformacao(id_professor).subscribe(
-      data => {
-        this.util.setStorage('dataInformacao', data);
-    });
-    this.informacaoProvider.indexMensagem(id_aluno).subscribe(
-      data => {
-        this.util.setStorage('dataMensagem', data);
-    });
+  ionViewWillEnter(){
+    this.doRefresh();
   }
 
   initMenu() {
     this.menu = [];
-    this.menu.push({ title: 'Treinos', component: SeriePage, icon: 'ios-man', class: '' });
+    this.menu.push({ title: 'Treinos', component: SeriePage, icon: 'ios-man', class: '' }); //ion-ios-body
     this.menu.push({ title: 'Avaliações', component: AvaliacaoPage, icon: 'ios-document', class: '' });
     this.menu.push({ title: 'Gráficos', component: GraficoPage, icon: 'md-trending-up', class: '' });
     this.menu.push({ title: 'Calendário', component: CalendarioPage, icon: 'ios-calendar', class: '' });
@@ -135,7 +67,7 @@ export class DashboardPage {
     if (this.util.getStorage('showReserva') === 'true')
       this.menu.push({ title: 'Reservas', component: ReservaPage, icon: 'ios-create', class: '' });
 
-    if (this.util.getStorage('showRanking') === 'true')
+    if (this.showRanking === true)
       this.menu.push({ title: 'Ranking', component: RankingPage, icon: 'md-podium', class: '' });
 
     const classe = this.menu.length%2==0?'m-l-25p':'';
@@ -156,17 +88,35 @@ export class DashboardPage {
     });
   }
 
+  isActive() {
+    this.authProvider.isActive().subscribe(
+      data => {
+        if (data['_body']=="") {
+          this.util.logout();
+          this.navCtrl.setRoot(LoginPage);
+        }
+      });
+  }
+
   doRefresh() {
+    this.isActive();
+    
+    this.userImg = this.util.getStorage('facebookId');
+
     this.rankingProvider.getGrupo().subscribe(
       data=>{
-        if(data['_body']==='0'){
+        if(data['_body']==='0' || data['_body']===''){
           this.showPontos = false;
+          this.showRanking = false;
           this.util.setStorage('showRanking','false');
+          this.initMenu();
         }
         else{
           this.showPontos = true;
+          this.showRanking = true;
           this.util.setStorage('showRanking', 'true');
           this.updatePontos();
+          this.initMenu();
         }
     });
 
@@ -184,7 +134,14 @@ export class DashboardPage {
   }
 
   logout() {
-    this.util.setLogout();
+    if (this.util.checkNetwork()) {
+      this.authProvider.playerId(this.util.getStorage('id_usuario'), '').subscribe(res => {
+        this.util.logout();
+        this.navCtrl.setRoot(LoginPage);
+      });
+    } else {
+      this.util.showAlert('Atenção', 'Internet Offline', 'Ok', false);
+    }
   }
 
 }

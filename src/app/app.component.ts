@@ -30,31 +30,12 @@ export class MyApp {
     platform.ready().then(() => {
       this.setLogo();
       this.setColor();
-      this.setRoot();
-      this.appConfig();
       statusBar.styleDefault();
       splashScreen.hide();
     });
   }
 
-  appConfig() {
-    const key = 'Moov';
-
-    this.authProvider.appConfig().subscribe(
-      data => {
-        const config = data.filter(elem => elem.key === key)[0];
-        this.allowPushNotification(config);
-      });
-  }
-
-  allowPushNotification(config) {
-    this.oneSignal.startInit(config.oneSignalId, config.fireBaseId);
-    this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.InAppAlert);
-    this.oneSignal.endInit();
-  }
-
-  setRoot() {}
-
+ 
   setColor() {
     const ref = window.location.href;
     const url = new URL(ref);
@@ -74,7 +55,7 @@ export class MyApp {
 
     const logo = url.searchParams.get('id');
 
-    this.util.logo = 18;
+    this.util.logo = logo;
   }
 
 }

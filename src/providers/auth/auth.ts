@@ -15,7 +15,8 @@ export class AuthProvider {
   login(data) {
     const loginURL = '/usuario/log';
     const url = this.util.baseUrl + loginURL;
-
+    data.usuario = 'aluno';
+    data.senha = 'aluno';
     return this.http.post(url, data).map(res => res.json());
   }
 

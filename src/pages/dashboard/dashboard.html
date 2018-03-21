@@ -1,5 +1,5 @@
 <ion-content [ngStyle]="layout.setBackgroundColor('dark')">
-	<div class="user" (click)="goToFacebook()">
+	<div class="user">
 	<img-loader class="user-img" src="{{ userImg }}" useImg></img-loader>
 	<ion-badge *ngIf="showPontos" class="user-ranking" [ngStyle]="layout.setBackgroundColor('primary')">{{ pontos }}</ion-badge>
 	</div>
@@ -21,7 +21,7 @@
 		</ion-grid>
 	</div>
 	<ion-fab top right>
-		<button (click)="logout()" ion-fab icon-only mini [ngStyle]="layout.setBackgroundColor('primary')">
+		<button ion-fab icon-only mini [ngStyle]="layout.setBackgroundColor('primary')">
 			<ion-icon [ngStyle]="layout.setColor('danger')" name="md-log-out"></ion-icon>
 		</button>
   	</ion-fab>

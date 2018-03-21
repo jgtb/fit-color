@@ -41,7 +41,6 @@ export class LoginPage {
     public reservaProvider: ReservaProvider,
     public rankingProvider: RankingProvider,
     public graficoProvider: GraficoProvider,
-    public oneSignal: OneSignal,
     public util: Util) {
       this.initForm();
     }
@@ -84,13 +83,10 @@ export class LoginPage {
     this.util.setStorage('isLogged', 'true');
     this.util.setStorage('showReserva', id_tipo_professor === 4 ? 'true' : 'false');
     this.util.setStorage('showRanking', grupo !== 0? 'true': 'false');
-    //this.util.setStorage('logo', id_professor);
     this.util.setStorage('id_aluno', id_aluno);
     this.util.setStorage('id_usuario', id_usuario);
     this.util.setStorage('id_professor', id_professor);
     this.util.setStorage('facebookId', facebookId === null ? 'assets/img/facebook.png' : facebookId);
-
-    //this.playerId(id_usuario);
 
     this.serieProvider.index(id_aluno).subscribe(
       data => {
@@ -169,15 +165,6 @@ export class LoginPage {
     } else {
       this.util.showAlert('Atenção', 'Internet Offline', 'Ok', false);
     }
-  }
-
-  playerId(userId) {
-    this.oneSignal.getIds().then(
-      result => {
-        const playerId = result.userId;
-
-        this.authProvider.playerId(userId, playerId).subscribe();
-      });
   }
 
 }

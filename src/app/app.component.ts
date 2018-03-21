@@ -53,9 +53,7 @@ export class MyApp {
     const ref = window.location.href;
     const url = new URL(ref);
 
-    const logo = url.searchParams.get('id');
-
-    this.util.logo = logo;
+    this.util.setStorage('logo',url.searchParams.get('id'));
   }
 
 }

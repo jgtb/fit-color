@@ -13,14 +13,14 @@ export class RankingProvider {
     public util: Util) {}
 
   index() {
-    const indexURL = '/usuario/ranking?id_aluno=';
+    const indexURL = '/ranking/ranking?id_aluno=';
     const url = this.util.baseUrl + indexURL + this.util.getStorage('id_aluno');
 
     return this.http.get(url).map(res => res.json());
   }
 
   getGrupo() {
-    const ativoURL = '/usuario/get-grupo?id_aluno=';
+    const ativoURL = '/aluno/get-grupo?id_aluno=';
     const url = this.util.baseUrl + ativoURL + this.util.getStorage('id_aluno');
 
     return this.http.get(url);

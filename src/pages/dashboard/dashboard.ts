@@ -44,8 +44,8 @@ export class DashboardPage {
   menu: Array<{title: string, component: any, icon: string, class: string}>;
 
   width: number;
-
   height: number;
+  time: number;
 
   constructor(
     public facebook: Facebook,
@@ -66,6 +66,10 @@ export class DashboardPage {
       this.doLogin();
     }
 
+    ionViewWillEnter(){
+      this.time = (new Date()).getTime();
+    }
+  
   initMenu() {
     this.menu = [];
     this.menu.push({ title: 'Treinos', component: SeriePage, icon: 'ios-man', class: '' }); //ion-ios-body

@@ -46,7 +46,7 @@
         <ion-row>
           <ion-col col-12 *ngFor="let item of dataInformacao; let i = index;">
             <ion-card [ngStyle]="layout.setBackgroundColor('darklight')">
-              <img-loader class="img-informacao" src="{{ util.baseUrl }}/logos/{{ util.getStorage('logo') }}.png" useImg></img-loader>
+              <img-loader class="img-informacao" src="{{ util.baseUrl }}/logos/{{ util.getStorage('logo') }}.png?{{time}}" useImg></img-loader>
               <ion-card-content>
                 <p [ngStyle]="layout.setColor('light')">
                   {{ item.resumo }} <br>
